@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Module - Cognive Learning</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #2c3e50;
+    }
+
+    .nav-links a {
+      color: #3498db;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+
+    /* Page Container */
+    .page-container {
+      padding: 6rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Article Viewer */
+    .article-viewer {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .article-sidebar {
+      flex: 1;
+      max-width: 300px;
+    }
+
+    .article-content {
+      flex: 3;
+      max-width: 800px;
+    }
+
+    .article-list {
+      list-style: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .article-item {
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .article-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .article-item.active {
+      background: #3498db;
+      color: white;
+    }
+
+    /* Article Content */
+    .article {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .article h2 {
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+
+    .article p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      height: 8px;
+      background: #ecf0f1;
+      border-radius: 4px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #3498db;
+      transition: width 0.3s ease;
+    }
+
+    /* Control Buttons */
+    .control-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .nav-button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background: #2980b9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .article-viewer {
+        flex-direction: column;
+      }
+      
+      .article-sidebar {
+        max-width: 100%;
+        order: 2;
+      }
+      
+      .article-content {
+        max-width: 100%;
+        order: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">Cognive Learning</div>
+    <div class="nav-links">
+      <a href="test-page.html" class="dashboard-button">Dashboard</a>
+    </div>
+  </nav>
+
+  <!-- Reading Module Page -->
+  <div id="reading" class="page active">
+    <div class="page-container">
+      <h1 class="page-title">Reading Module</h1>
+      
+      <div class="article-viewer">
+        <!-- Article Content -->
+        <section class="article-content">
+          <div class="article">
+            <h2 id="article-title">Sample Article</h2>
+            <p id="article-text">This is a sample article. Content will load dynamically here...</p>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <div class="control-buttons">
+            <button class="nav-button" id="prev-article">Previous</button>
+            <button class="nav-button" id="next-article">Next</button>
+          </div>
+        </section>
+
+        <!-- Article List Sidebar -->
+        <section class="article-sidebar">
+          <h2>Articles</h2>
+          <ul class="article-list">
+            <!-- Article items will be generated here -->
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articles = [
+        {
+          id: 1,
+          title: "The Science of Learning",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+          id: 2,
+          title: "Cognitive Development",
+          text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..."
+        },
+        {
+          id: 3,
+          title: "Memory Retention Techniques",
+          text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..."
+        },
+        {
+          id: 4,
+          title: "Neuroplasticity Basics",
+          text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..."
+        },
+        {
+          id: 5,
+          title: "Active Recall Strategies",
+          text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium..."
+        }
+      ];
+
+      const articleList = document.querySelector('.article-list');
+      const articleTitle = document.getElementById('article-title');
+      const articleText = document.getElementById('article-text');
+      const progressBar = document.querySelector('.progress-fill');
+      const prevButton = document.getElementById('prev-article');
+      const nextButton = document.getElementById('next-article');
+
+      let currentArticle = 0;
+
+      // Generate article list
+      articles.forEach((article, index) => {
+        const item = document.createElement('li');
+        item.className = 'article-item';
+        if (index === 0) item.classList.add('active');
+        item.textContent = `Article ${index + 1}: ${article.title}`;
+        item.dataset.index = index;
+        
+        item.addEventListener('click', () => {
+          currentArticle = index;
+          loadArticle();
+        });
+        
+        articleList.appendChild(item);
+      });
+
+      // Load article function
+      function loadArticle() {
+        const article = articles[currentArticle];
+        articleTitle.textContent = article.title;
+        articleText.textContent = article.text;
+        progressBar.style.width = `${(currentArticle + 1) / articles.length * 100}%`;
+        
+        // Update active state
+        document.querySelectorAll('.article-item').forEach(i => i.classList.remove('active'));
+        document.querySelector(`.article-item[data-index="${currentArticle}"]`).classList.add('active');
+      }
+
+      // Navigation buttons
+      prevButton.addEventListener('click', () => {
+        if (currentArticle > 0) currentArticle--;
+        loadArticle();
+      });
+
+      nextButton.addEventListener('click', () => {
+        if (currentArticle < articles.length - 1) currentArticle++;
+        loadArticle();
+      });
+
+      // Initial load
+      loadArticle();
+    });
+  </script>
+</body>
+</html>
