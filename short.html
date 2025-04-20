@@ -1,87 +1,143 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Short Videos - Cognive Learning</title>
-  <link rel="stylesheet" href="short_styles.css">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Video Player Section */
+    .video-player-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .video-player {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      margin: 2rem 0;
+    }
+
+    .video-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Playlist Section */
+    .playlist-section {
+      margin-top: 2rem;
+    }
+
+    .playlist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .playlist-item {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+      width: calc(33.33% - 1rem); /* Adjust based on number of items */
+    }
+
+    .playlist-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .playlist-item.active {
+      background: #ffcc00;
+      color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .playlist-item {
+        width: calc(50% - 1rem);
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav class="navbar">
-    <div class="logo">
-      <img src="cognive-logo.png" alt="Cognive Learning Logo">
-    </div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">Login</a></li>
-    </ul>
-    <div class="burger">
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
+    <div class="logo">Cognive Learning</div>
+    <div class="nav-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('testing')">Testing</a>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="content-container">
-    <!-- Video Player Section -->
-    <section class="video-player-section">
-      <h1>Sample Title</h1>
-      <div class="description-box">
-        <p><strong>Testing Module:</strong> This short video is used to collect engagement and attention data.</p>
-      </div>
-      <div class="video-player">
-        <!-- Placeholder Video Player -->
-        <div class="placeholder-video">
-          <div class="video-controls">
-            <span class="duration">10:10</span>
-            <button class="play-btn"><i class="fas fa-play"></i></button>
-            <span class="current-time">0:00</span>
-            <div class="progress-bar">
-              <div class="progress-filled"></div>
-            </div>
-            <button class="volume-btn"><i class="fas fa-volume-up"></i></button>
-          </div>
+  <!-- Short Videos Page -->
+  <div id="short-videos" class="page active">
+    <div class="page-container">
+      <h1>Short Video Test</h1>
+      
+      <!-- Video Player Section -->
+      <section class="video-player-section">
+        <div class="video-player">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                  title="YouTube video player" frameborder="0" allowfullscreen></iframe>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Playlist Section -->
-    <section class="playlist-section">
-      <h2>Playlist</h2>
-      <p>Future videos will appear here.</p>
-      <div class="playlist-items">
-        <!-- Placeholder for future videos -->
-        <div class="playlist-item">
-          <div class="thumbnail">
-            <img src="placeholder-thumbnail.jpg" alt="Video Thumbnail">
-          </div>
-          <div class="details">
-            <h3>Video Title 1</h3>
-            <p>Description of Video 1</p>
-          </div>
+      <!-- Playlist Section -->
+      <section class="playlist-section">
+        <h2>Playlist</h2>
+        <div class="playlist">
+          <div class="playlist-item active" data-video-id="VIDEO_ID_1">Video 1: Introduction</div>
+          <div class="playlist-item" data-video-id="VIDEO_ID_2">Video 2: Advanced Concepts</div>
+          <div class="playlist-item" data-video-id="VIDEO_ID_3">Video 3: Practical Examples</div>
         </div>
-        <div class="playlist-item">
-          <div class="thumbnail">
-            <img src="placeholder-thumbnail.jpg" alt="Video Thumbnail">
-          </div>
-          <div class="details">
-            <h3>Video Title 2</h3>
-            <p>Description of Video 2</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </div>
+  </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2023 Cognive Learning. All rights reserved.</p>
-  </footer>
+  <script>
+    // Initialize variables
+    const videoPlayer = document.querySelector('.video-player iframe');
+    const playlistItems = document.querySelectorAll('.playlist-item');
 
-  <script src="short_script.js"></script>
+    // Function to update the video player
+    function loadVideo(videoId) {
+      videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    // Event listener for playlist item clicks
+    playlistItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Update active state
+        playlistItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        // Load the selected video
+        const videoId = item.getAttribute('data-video-id');
+        loadVideo(videoId);
+      });
+    });
+
+    // Initial setup: Load the first video
+    loadVideo(playlistItems[0].getAttribute('data-video-id'));
+  </script>
 </body>
 </html>
