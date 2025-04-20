@@ -14,7 +14,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f9fafb;
+      background: #f9fafb;
       color: #333;
       line-height: 1.6;
       min-height: 100vh;
@@ -25,8 +25,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #ffffff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       padding: 1rem 2rem;
       position: fixed;
       width: 100%;
@@ -34,35 +34,16 @@
     }
 
     .logo {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #333;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #2c3e50;
     }
 
     .nav-links a {
+      color: #3498db;
       text-decoration: none;
-      color: #333;
+      margin-left: 1.5rem;
       font-weight: 500;
-      margin-left: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #007bff;
-    }
-
-    .dashboard-button {
-      background: #007bff;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-    .dashboard-button:hover {
-      background: #0056b3;
     }
 
     /* Page Container */
@@ -70,6 +51,27 @@
       padding: 6rem 2rem 2rem;
       max-width: 1200px;
       margin: 0 auto;
+    }
+
+    /* Centered Title */
+    .page-title {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: #2c3e50;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #3498db;
+      margin: 0.5rem auto 2rem;
+      border-radius: 2px;
     }
 
     /* Video Player and Playlist Layout */
@@ -82,17 +84,17 @@
     /* Video Player Section */
     .video-player-section {
       flex: 2;
+      max-width: 400px;
     }
 
     .video-player {
       position: relative;
-      padding-top: 177.78%; /* 9:16 Aspect Ratio */
-      margin: 0 auto;
       width: 100%;
-      max-width: 400px;
+      aspect-ratio: 9/16;
       background: #000;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     }
 
     .video-player iframe {
@@ -107,78 +109,92 @@
     /* Playlist Section */
     .playlist-section {
       flex: 1;
-      max-width: 400px;
+      min-width: 250px;
     }
 
     .playlist {
       list-style: none;
-      max-height: 80vh;
+      max-height: 75vh;
       overflow-y: auto;
-      padding-right: 1rem;
-      margin-top: 1rem;
+      padding: 0 1rem;
     }
 
     .playlist-item {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .playlist-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
     .playlist-item.active {
-      background: #007bff;
+      background: #3498db;
       color: white;
     }
 
     .playlist-item img {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       object-fit: cover;
-      border-radius: 5px;
+      border-radius: 6px;
+    }
+
+    .playlist-item-content {
+      flex: 1;
+    }
+
+    .playlist-item-title {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .playlist-item-number {
+      color: #7f8c8d;
+      font-size: 0.875rem;
     }
 
     /* Scrollbar Styling */
     .playlist::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     .playlist::-webkit-scrollbar-track {
-      background: #f1f1f1;
+      background: #ecf0f1;
       border-radius: 10px;
     }
 
     .playlist::-webkit-scrollbar-thumb {
-      background: #888;
+      background: #bdc3c7;
       border-radius: 10px;
     }
 
-    .playlist::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
-
     /* Responsive Design */
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .video-playlist-container {
-        flex-direction: column;
+        flex-wrap: wrap;
       }
-
-      .video-player {
+      
+      .video-player-section {
+        flex: 1 100%;
         max-width: 100%;
+        order: 1;
       }
-
+      
       .playlist-section {
-        max-width: 100%;
+        flex: 1 100%;
+        order: 2;
+        min-width: 100%;
+        margin-top: 2rem;
       }
     }
   </style>
@@ -195,21 +211,24 @@
   <!-- Short Videos Page -->
   <div id="short-videos" class="page active">
     <div class="page-container">
-      <h1>Short Videos</h1>
+      <h1 class="page-title">Short Videos</h1>
       
-      <!-- Video Player and Playlist Container -->
       <div class="video-playlist-container">
         <!-- Video Player Section -->
         <section class="video-player-section">
           <div class="video-player">
             <iframe src="https://www.youtube.com/embed/short-01" 
-                    title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+            </iframe>
           </div>
         </section>
 
         <!-- Playlist Section -->
         <section class="playlist-section">
-          <h2>Playlist</h2>
+          <h2 class="playlist-title">Playlist</h2>
           <ul class="playlist">
             <!-- Playlist items will be generated here -->
           </ul>
@@ -240,9 +259,10 @@
         item.dataset.videoId = videoId;
         
         item.innerHTML = `
-          <img src="https://img.youtube.com/vi/${videoId}/default.jpg" alt="Thumbnail">
-          <div>
-            <p><strong>Video ${index + 1}:</strong> ${videoId}</p>
+          <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="Thumbnail">
+          <div class="playlist-item-content">
+            <p class="playlist-item-title">${videoId}</p>
+            <p class="playlist-item-number">Video ${index + 1} of ${videoList.length}</p>
           </div>
         `;
         
@@ -255,6 +275,7 @@
         playlist.appendChild(item);
       });
 
+      // Initial video load
       document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoList[0]}`;
     });
   </script>
