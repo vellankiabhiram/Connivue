@@ -85,7 +85,7 @@
     .playlist-section {
       flex: 1;
       max-width: 250px;
-      order: 1; /* Move playlist to the left */
+      order: 2; /* Move playlist to the right */
     }
 
     .playlist {
@@ -139,32 +139,6 @@
       font-size: 0.875rem;
     }
 
-    /* Video Player Section */
-    .video-player-section {
-      flex: 2;
-      max-width: 600px;
-      order: 2; /* Keep video player on the right */
-    }
-
-    .video-player {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9; /* Adjusted for long form content */
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
-
-    .video-player iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
     /* Scrollbar Styling */
     .playlist::-webkit-scrollbar {
       width: 6px;
@@ -180,19 +154,84 @@
       border-radius: 10px;
     }
 
+    /* Video Player Section */
+    .video-player-section {
+      flex: 2;
+      max-width: 600px;
+      order: 1; /* Keep video player on the left */
+    }
+
+    .video-player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .video-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      height: 8px;
+      background: #ecf0f1;
+      border-radius: 4px;
+      margin-top: 1rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #3498db;
+      transition: width 0.3s ease;
+    }
+
+    /* Navigation Buttons */
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .nav-button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background: #2980b9;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       .video-playlist-container {
         flex-direction: column;
       }
       
-      .playlist-section {
-        max-width: 100%;
-        margin-bottom: 2rem;
-      }
-      
       .video-player-section {
         max-width: 100%;
+        order: 1;
+      }
+      
+      .playlist-section {
+        max-width: 100%;
+        order: 2;
+        margin-top: 2rem;
       }
     }
   </style>
@@ -212,14 +251,6 @@
       <h1 class="page-title">Long Form Content</h1>
       
       <div class="video-playlist-container">
-        <!-- Playlist Section -->
-        <section class="playlist-section">
-          <h2 class="playlist-title">Playlist</h2>
-          <ul class="playlist">
-            <!-- Playlist items will be generated here -->
-          </ul>
-        </section>
-
         <!-- Video Player Section -->
         <section class="video-player-section">
           <div class="video-player">
@@ -230,6 +261,25 @@
                     allowfullscreen>
             </iframe>
           </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="navigation-buttons">
+            <button class="nav-button" id="prev-video">Previous</button>
+            <button class="nav-button" id="next-video">Next</button>
+          </div>
+        </section>
+
+        <!-- Playlist Section -->
+        <section class="playlist-section">
+          <h2 class="playlist-title">Playlist</h2>
+          <ul class="playlist">
+            <!-- Playlist items will be generated here -->
+          </ul>
         </section>
       </div>
     </div>
@@ -239,10 +289,16 @@
     document.addEventListener('DOMContentLoaded', () => {
       const videoList = [
         'long-01', 'long-02', 'long-03', 'long-04', 'long-05'
-      ]; // Limited to 5 videos
+      ];
 
       const playlist = document.querySelector('.playlist');
+      const videoPlayer = document.querySelector('.video-player iframe');
+      const prevButton = document.getElementById('prev-video');
+      const nextButton = document.getElementById('next-video');
+      const progressFill = document.querySelector('.progress-fill');
+      let currentVideoIndex = 0;
 
+      // Generate playlist items
       videoList.forEach((videoId, index) => {
         const item = document.createElement('li');
         item.className = 'playlist-item';
@@ -258,16 +314,43 @@
         `;
         
         item.addEventListener('click', () => {
-          document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-          document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoId}`;
+          currentVideoIndex = index;
+          updateVideo();
         });
         
         playlist.appendChild(item);
       });
 
-      // Initial video load
-      document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoList[0]}`;
+      // Update video function
+      function updateVideo() {
+        const videoId = videoList[currentVideoIndex];
+        videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+        
+        // Update active state
+        document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
+        document.querySelector(`[data-video-id="${videoId}"]`).classList.add('active');
+        
+        // Update progress bar
+        progressFill.style.width = `${(currentVideoIndex + 1) / videoList.length * 100}%`;
+      }
+
+      // Previous/Next Button Logic
+      prevButton.addEventListener('click', () => {
+        if (currentVideoIndex > 0) {
+          currentVideoIndex--;
+          updateVideo();
+        }
+      });
+
+      nextButton.addEventListener('click', () => {
+        if (currentVideoIndex < videoList.length - 1) {
+          currentVideoIndex++;
+          updateVideo();
+        }
+      });
+
+      // Initial load
+      updateVideo();
     });
   </script>
 </body>
