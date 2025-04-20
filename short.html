@@ -86,7 +86,7 @@
 
     .video-player {
       position: relative;
-      padding-top: 150%; /* Adjusted for a balanced 9:16-like ratio */
+      padding-top: 177.78%; /* 9:16 Aspect Ratio */
       margin: 0 auto;
       width: 100%;
       max-width: 400px;
@@ -111,9 +111,11 @@
     }
 
     .playlist {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      list-style: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding-right: 1rem;
+      margin-top: 1rem;
     }
 
     .playlist-item {
@@ -126,6 +128,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .playlist-item:hover {
@@ -143,6 +146,25 @@
       height: 50px;
       object-fit: cover;
       border-radius: 5px;
+    }
+
+    /* Scrollbar Styling */
+    .playlist::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .playlist::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .playlist::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    .playlist::-webkit-scrollbar-thumb:hover {
+      background: #555;
     }
 
     /* Responsive Design */
@@ -180,7 +202,7 @@
         <!-- Video Player Section -->
         <section class="video-player-section">
           <div class="video-player">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
+            <iframe src="https://www.youtube.com/embed/short-01" 
                     title="YouTube video player" frameborder="0" allowfullscreen></iframe>
           </div>
         </section>
@@ -188,56 +210,53 @@
         <!-- Playlist Section -->
         <section class="playlist-section">
           <h2>Playlist</h2>
-          <div class="playlist">
-            <div class="playlist-item active" data-video-id="VIDEO_ID_1">
-              <img src="https://img.youtube.com/vi/VIDEO_ID_1/default.jpg" alt="Thumbnail 1">
-              <div>
-                <p><strong>Video 1:</strong> Introduction</p>
-              </div>
-            </div>
-            <div class="playlist-item" data-video-id="VIDEO_ID_2">
-              <img src="https://img.youtube.com/vi/VIDEO_ID_2/default.jpg" alt="Thumbnail 2">
-              <div>
-                <p><strong>Video 2:</strong> Advanced Concepts</p>
-              </div>
-            </div>
-            <div class="playlist-item" data-video-id="VIDEO_ID_3">
-              <img src="https://img.youtube.com/vi/VIDEO_ID_3/default.jpg" alt="Thumbnail 3">
-              <div>
-                <p><strong>Video 3:</strong> Practical Examples</p>
-              </div>
-            </div>
-          </div>
+          <ul class="playlist">
+            <!-- Playlist items will be generated here -->
+          </ul>
         </section>
       </div>
     </div>
   </div>
 
   <script>
-    // Initialize variables
-    const videoPlayer = document.querySelector('.video-player iframe');
-    const playlistItems = document.querySelectorAll('.playlist-item');
+    document.addEventListener('DOMContentLoaded', () => {
+      const videoList = [
+        'short-01', 'short-02', 'short-03', 'short-04', 'short-05',
+        'short-06', 'short-07', 'short-08', 'short-09', 'short-10',
+        'short-11', 'short-12', 'short-13', 'short-14', 'short-15',
+        'short-16', 'short-17', 'short-18', 'short-19', 'short-20',
+        'short-21', 'short-22', 'short-23', 'short-24', 'short-25',
+        'short-26', 'short-27', 'short-28', 'short-29', 'short-30',
+        'short-31', 'short-32', 'short-33', 'short-34', 'short-35',
+        'short-36', 'short-37', 'short-38', 'short-39', 'short-40'
+      ];
 
-    // Function to update the video player
-    function loadVideo(videoId) {
-      videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
-    }
+      const playlist = document.querySelector('.playlist');
 
-    // Event listener for playlist item clicks
-    playlistItems.forEach(item => {
-      item.addEventListener('click', () => {
-        // Update active state
-        playlistItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-
-        // Load the selected video
-        const videoId = item.getAttribute('data-video-id');
-        loadVideo(videoId);
+      videoList.forEach((videoId, index) => {
+        const item = document.createElement('li');
+        item.className = 'playlist-item';
+        if (index === 0) item.classList.add('active');
+        item.dataset.videoId = videoId;
+        
+        item.innerHTML = `
+          <img src="https://img.youtube.com/vi/${videoId}/default.jpg" alt="Thumbnail">
+          <div>
+            <p><strong>Video ${index + 1}:</strong> ${videoId}</p>
+          </div>
+        `;
+        
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoId}`;
+        });
+        
+        playlist.appendChild(item);
       });
-    });
 
-    // Initial setup: Load the first video
-    loadVideo(playlistItems[0].getAttribute('data-video-id'));
+      document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoList[0]}`;
+    });
   </script>
 </body>
 </html>
