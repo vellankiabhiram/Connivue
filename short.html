@@ -106,17 +106,59 @@
       border: none;
     }
 
+    /* Progress Bar */
+    .progress-bar {
+      margin-top: 1rem;
+      height: 8px;
+      background: #ecf0f1;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #3498db;
+      transition: width 0.3s ease;
+    }
+
+    /* Previous/Next Buttons */
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .navigation-button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .navigation-button:hover {
+      background: #2980b9;
+    }
+
     /* Playlist Section */
     .playlist-section {
       flex: 1;
       min-width: 250px;
+      max-height: 80vh; /* Limit playlist height */
+      overflow-y: auto; /* Enable scrolling */
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      background: white;
+      padding: 1rem;
     }
 
     .playlist {
       list-style: none;
-      max-height: 75vh;
-      overflow-y: auto;
-      padding: 0 1rem;
+      padding: 0;
+      margin: 0;
     }
 
     .playlist-item {
@@ -164,18 +206,22 @@
     }
 
     /* Scrollbar Styling */
-    .playlist::-webkit-scrollbar {
-      width: 6px;
+    .playlist-section::-webkit-scrollbar {
+      width: 8px;
     }
 
-    .playlist::-webkit-scrollbar-track {
+    .playlist-section::-webkit-scrollbar-track {
       background: #ecf0f1;
       border-radius: 10px;
     }
 
-    .playlist::-webkit-scrollbar-thumb {
+    .playlist-section::-webkit-scrollbar-thumb {
       background: #bdc3c7;
       border-radius: 10px;
+    }
+
+    .playlist-section::-webkit-scrollbar-thumb:hover {
+      background: #95a5a6;
     }
 
     /* Responsive Design */
@@ -224,6 +270,17 @@
                     allowfullscreen>
             </iframe>
           </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+          <!-- Previous/Next Buttons -->
+          <div class="navigation-buttons">
+            <button class="navigation-button" id="prev-video">Previous</button>
+            <button class="navigation-button" id="next-video">Next</button>
+          </div>
         </section>
 
         <!-- Playlist Section -->
@@ -251,7 +308,13 @@
       ];
 
       const playlist = document.querySelector('.playlist');
+      const videoPlayer = document.querySelector('.video-player iframe');
+      const prevButton = document.getElementById('prev-video');
+      const nextButton = document.getElementById('next-video');
+      const progressFill = document.querySelector('.progress-fill');
+      let currentVideoIndex = 0;
 
+      // Generate playlist items
       videoList.forEach((videoId, index) => {
         const item = document.createElement('li');
         item.className = 'playlist-item';
@@ -267,16 +330,43 @@
         `;
         
         item.addEventListener('click', () => {
-          document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
-          document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoId}`;
+          currentVideoIndex = index;
+          updateVideo();
         });
         
         playlist.appendChild(item);
       });
 
-      // Initial video load
-      document.querySelector('.video-player iframe').src = `https://www.youtube.com/embed/${videoList[0]}`;
+      // Update video function
+      function updateVideo() {
+        const videoId = videoList[currentVideoIndex];
+        videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+        
+        // Update active state
+        document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
+        document.querySelector(`[data-video-id="${videoId}"]`).classList.add('active');
+        
+        // Update progress bar
+        progressFill.style.width = `${(currentVideoIndex + 1) / videoList.length * 100}%`;
+      }
+
+      // Previous/Next Button Logic
+      prevButton.addEventListener('click', () => {
+        if (currentVideoIndex > 0) {
+          currentVideoIndex--;
+          updateVideo();
+        }
+      });
+
+      nextButton.addEventListener('click', () => {
+        if (currentVideoIndex < videoList.length - 1) {
+          currentVideoIndex++;
+          updateVideo();
+        }
+      });
+
+      // Initial load
+      updateVideo();
     });
   </script>
 </body>
