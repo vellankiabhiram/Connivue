@@ -72,14 +72,21 @@
       margin: 0 auto;
     }
 
+    /* Video Player and Playlist Layout */
+    .video-playlist-container {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
     /* Video Player Section */
     .video-player-section {
-      margin-bottom: 2rem;
+      flex: 2;
     }
 
     .video-player {
       position: relative;
-      padding-top: 177.78%; /* 9:16 Aspect Ratio */
+      padding-top: 150%; /* Adjusted for a balanced 9:16-like ratio */
       margin: 0 auto;
       width: 100%;
       max-width: 400px;
@@ -99,12 +106,13 @@
 
     /* Playlist Section */
     .playlist-section {
-      margin-top: 2rem;
+      flex: 1;
+      max-width: 400px;
     }
 
     .playlist {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
     }
 
@@ -139,8 +147,16 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-      .playlist {
-        grid-template-columns: 1fr;
+      .video-playlist-container {
+        flex-direction: column;
+      }
+
+      .video-player {
+        max-width: 100%;
+      }
+
+      .playlist-section {
+        max-width: 100%;
       }
     }
   </style>
@@ -159,38 +175,41 @@
     <div class="page-container">
       <h1>Short Videos</h1>
       
-      <!-- Video Player Section -->
-      <section class="video-player-section">
-        <div class="video-player">
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
-                  title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </section>
+      <!-- Video Player and Playlist Container -->
+      <div class="video-playlist-container">
+        <!-- Video Player Section -->
+        <section class="video-player-section">
+          <div class="video-player">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                    title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </section>
 
-      <!-- Playlist Section -->
-      <section class="playlist-section">
-        <h2>Playlist</h2>
-        <div class="playlist">
-          <div class="playlist-item active" data-video-id="VIDEO_ID_1">
-            <img src="thumbnail1.jpg" alt="Thumbnail 1">
-            <div>
-              <p><strong>Video 1:</strong> Introduction</p>
+        <!-- Playlist Section -->
+        <section class="playlist-section">
+          <h2>Playlist</h2>
+          <div class="playlist">
+            <div class="playlist-item active" data-video-id="VIDEO_ID_1">
+              <img src="https://img.youtube.com/vi/VIDEO_ID_1/default.jpg" alt="Thumbnail 1">
+              <div>
+                <p><strong>Video 1:</strong> Introduction</p>
+              </div>
+            </div>
+            <div class="playlist-item" data-video-id="VIDEO_ID_2">
+              <img src="https://img.youtube.com/vi/VIDEO_ID_2/default.jpg" alt="Thumbnail 2">
+              <div>
+                <p><strong>Video 2:</strong> Advanced Concepts</p>
+              </div>
+            </div>
+            <div class="playlist-item" data-video-id="VIDEO_ID_3">
+              <img src="https://img.youtube.com/vi/VIDEO_ID_3/default.jpg" alt="Thumbnail 3">
+              <div>
+                <p><strong>Video 3:</strong> Practical Examples</p>
+              </div>
             </div>
           </div>
-          <div class="playlist-item" data-video-id="VIDEO_ID_2">
-            <img src="thumbnail2.jpg" alt="Thumbnail 2">
-            <div>
-              <p><strong>Video 2:</strong> Advanced Concepts</p>
-            </div>
-          </div>
-          <div class="playlist-item" data-video-id="VIDEO_ID_3">
-            <img src="thumbnail3.jpg" alt="Thumbnail 3">
-            <div>
-              <p><strong>Video 3:</strong> Practical Examples</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </div>
 
