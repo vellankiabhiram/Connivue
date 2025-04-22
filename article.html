@@ -134,31 +134,13 @@
     }
 
     .question ul {
-      list-style-type: upper-alpha;
+      list-style-type: none;
       margin-left: 1.5rem;
       margin-bottom: 0.5rem;
     }
 
     .question ul li {
       margin-bottom: 0.3rem;
-    }
-
-    .feedback {
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      border-radius: 4px;
-    }
-
-    .correct {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-
-    .incorrect {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
     }
 
     /* Progress Bar */
@@ -278,17 +260,32 @@
           questions: [
             {
               question: "What details in the passage suggest that Alex's experience was both accidental and humorous?",
-              options: ["A. His careful planning and deliberate actions", "B. The accidental press of a mysterious button and the unexpected disco setting", "C. The serious tone of the email meeting", "D. His reliance on technology to solve problems"],
+              options: [
+                "A. His careful planning and deliberate actions",
+                "B. The accidental press of a mysterious button and the unexpected disco setting",
+                "C. The serious tone of the email meeting",
+                "D. His reliance on technology to solve problems"
+              ],
               answer: "B"
             },
             {
               question: "How does the mix of modern technology with a 1970s disco setting contribute to the overall absurdity?",
-              options: ["A. It creates a jarring contrast between different eras", "B. It emphasizes the historical accuracy of the scene", "C. It shows that disco music is timeless", "D. It reinforces traditional norms"],
+              options: [
+                "A. It creates a jarring contrast between different eras",
+                "B. It emphasizes the historical accuracy of the scene",
+                "C. It shows that disco music is timeless",
+                "D. It reinforces traditional norms"
+              ],
               answer: "A"
             },
             {
               question: "In what ways could Alex’s unexpected time travel incident be interpreted as a metaphor for avoiding responsibilities?",
-              options: ["A. It illustrates deliberate planning to escape work", "B. It symbolizes an unintentional escape from mundane obligations", "C. It suggests that responsibilities are easily managed", "D. It implies that time travel is a viable solution to problems"],
+              options: [
+                "A. It illustrates deliberate planning to escape work",
+                "B. It symbolizes an unintentional escape from mundane obligations",
+                "C. It suggests that responsibilities are easily managed",
+                "D. It implies that time travel is a viable solution to problems"
+              ],
               answer: "B"
             }
           ]
@@ -300,35 +297,406 @@
           questions: [
             {
               question: "What elements in the passage create a humorous and surreal atmosphere in the grocery store?",
-              options: ["A. The natural order of grocery shopping", "B. The absurd behavior of the produce, such as a talking tomato and escaping bananas", "C. The serious discussions about freshness", "D. The detailed layout of the store"],
+              options: [
+                "A. The natural order of grocery shopping",
+                "B. The absurd behavior of the produce, such as a talking tomato and escaping bananas",
+                "C. The serious discussions about freshness",
+                "D. The detailed layout of the store"
+              ],
               answer: "B"
             },
             {
               question: "How does the personification of the produce enhance the reader’s engagement with the text?",
-              options: ["A. By making the items seem lifeless", "B. By giving everyday objects unique personalities that add liveliness", "C. By distracting from the main storyline", "D. By emphasizing the normalcy of shopping"],
+              options: [
+                "A. By making the items seem lifeless",
+                "B. By giving everyday objects unique personalities that add liveliness",
+                "C. By distracting from the main storyline",
+                "D. By emphasizing the normalcy of shopping"
+              ],
               answer: "B"
             },
             {
               question: "What might the passage suggest about our perception of everyday experiences when viewed through a humorous lens?",
-              options: ["A. That everyday experiences remain dull", "B. That humor transforms ordinary moments into memorable adventures", "C. That humor is inappropriate in daily routines", "D. That serious interpretations are always preferred"],
+              options: [
+                "A. That everyday experiences remain dull",
+                "B. That humor transforms ordinary moments into memorable adventures",
+                "C. That humor is inappropriate in daily routines",
+                "D. That serious interpretations are always preferred"
+              ],
               answer: "B"
             }
           ]
         },
-        // ... (all other articles from the knowledge base follow the same structure)
-        
-        // Final Article Example
+        {
+          id: 3,
+          title: "Outlandish Office Antics",
+          text: "During a routine Monday morning meeting, the office printer mysteriously started spitting out paper confetti instead of reports. As employees danced around collecting the colorful scraps, their usually stern boss emerged laughing from the conference room. It was a day of unexpected celebration, where even the most mundane memos transformed into a riot of office cheer.",
+          questions: [
+            {
+              question: "How does the unexpected behavior of the printer serve as a catalyst for the office’s transformation?",
+              options: [
+                "A. It reinforces strict office rules",
+                "B. It turns an ordinary meeting into a playful, celebratory event",
+                "C. It causes a breakdown in communication",
+                "D. It leads to a formal reprimand"
+              ],
+              answer: "B"
+            },
+            {
+              question: "What role does the boss’s reaction play in shifting the tone of the scene from stressful to celebratory?",
+              options: [
+                "A. It creates further tension among the employees",
+                "B. It validates the humor and lightens the overall mood",
+                "C. It undermines the office hierarchy",
+                "D. It is irrelevant to the narrative"
+              ],
+              answer: "B"
+            },
+            {
+              question: "How might this passage be read as a commentary on the potential for joy in unexpected disruptions at work?",
+              options: [
+                "A. It suggests that disruptions are always negative",
+                "B. It illustrates that unexpected moments can lead to spontaneous joy and bonding",
+                "C. It implies that work should remain strictly organized",
+                "D. It discourages any deviation from routine"
+              ],
+              answer: "B"
+            }
+          ]
+        },
+        {
+          id: 4,
+          title: "Tech Gone Awry",
+          text: "Samantha’s new smart home system had a mind of its own. One evening, as she tried to dim the lights for a relaxing movie, the system instead started playing upbeat polka music and ordering pizza. With each unexpected command, the house transformed into a whimsical playground of technology’s quirks—leaving Samantha laughing and dancing along in a living room that knew how to throw a party.",
+          questions: [
+            {
+              question: "What does the smart home system’s behavior reveal about our reliance on technology in daily life?",
+              options: [
+                "A. That technology is infallible",
+                "B. That our dependence can lead to comical mishaps when systems malfunction",
+                "C. That technology always enhances productivity",
+                "D. That human error is the only issue"
+              ],
+              answer: "B"
+            },
+            {
+              question: "In what ways does the humorous malfunction of the system enhance the overall theme of unpredictability?",
+              options: [
+                "A. It reinforces the notion of controlled environments",
+                "B. It highlights that even sophisticated systems can behave erratically",
+                "C. It minimizes the impact of technological errors",
+                "D. It suggests that unpredictability should be avoided"
+              ],
+              answer: "B"
+            },
+            {
+              question: "How could Samantha’s reaction to the chaos be seen as a metaphor for embracing life’s unexpected moments?",
+              options: [
+                "A. It shows resistance to any change",
+                "B. It symbolizes an open-minded acceptance and joy in the face of unforeseen events",
+                "C. It indicates that only technology can resolve issues",
+                "D. It implies that one should always seek predictability"
+              ],
+              answer: "B"
+            }
+          ]
+        },
+        // Medium Articles
+        {
+          id: 5,
+          title: "Pet Talent Show Extravaganza",
+          text: "At the annual neighborhood pet talent show, chaos and charm collided in the most unexpected ways. The local community center buzzed with excitement as pets and their owners prepared for an unforgettable display of quirky skills. Among the contestants was a Siamese cat that flawlessly mimicked famous movie quotes, leaving the audience in fits of laughter, and a scruffy terrier whose energetic dance routines stole the spotlight. The highlight of the evening was a surprisingly coordinated act by a parrot and a rabbit, whose unlikely duet had everyone clapping. Despite a few adorable mishaps—such as a mix-up with the prop table and a runaway costume—the event radiated warmth and camaraderie, proving that sometimes the most unconventional talents bring the greatest joy. The lighthearted competition not only showcased the pets’ hidden abilities but also celebrated the unique bond between the animals and their quirky human companions.",
+          questions: [
+            {
+              question: "What does the pet talent show primarily symbolize in the passage?",
+              options: [
+                "A. A competitive event with strict rules",
+                "B. A celebration of unconventional abilities and uniqueness",
+                "C. A showcase for traditional pet tricks",
+                "D. A demonstration of training techniques"
+              ],
+              answer: "B"
+            },
+            {
+              question: "Which narrative element most effectively creates a sense of community and warmth in the passage?",
+              options: [
+                "A. The formal language used to describe the event",
+                "B. The humorous descriptions and lively imagery of the pets' performances",
+                "C. The focus on the competitive aspects of the show",
+                "D. The detailed rules and regulations of the contest"
+              ],
+              answer: "B"
+            },
+            {
+              question: "How does the interaction between pets and their owners deepen the reader’s understanding of identity?",
+              options: [
+                "A. It emphasizes the competitive nature of pet ownership",
+                "B. It highlights the separation between pets and their human counterparts",
+                "C. It showcases the strong bond and mutual celebration of uniqueness",
+                "D. It suggests that pets should perform to outshine their owners"
+              ],
+              answer: "C"
+            }
+          ]
+        },
+        {
+          id: 6,
+          title: "Kitchen Chaos at the New Bistro",
+          text: "The grand opening of the trendy new bistro promised a culinary adventure, and Chef Marisol certainly delivered—albeit in a delightfully chaotic fashion. Determined to impress food critics and patrons alike, she introduced a series of experimental dishes that quickly became the talk of the town. One moment, a soufflé decided gravity was merely a suggestion, soaring precariously before settling into a deliciously airy mess. The next, an overly enthusiastic garnish, intended as a decorative flourish, cascaded from the plate like confetti, sparking giggles among the diners. Amid the clatter of pans and the sizzling sounds of culinary chaos, the kitchen transformed into a stage of unpredictable artistry. Despite the mishaps, every dish carried an unmistakable charm, inviting guests to embrace the unexpected and savor the delightful unpredictability of modern gastronomy.",
+          questions: [
+            {
+              question: "What do the culinary mishaps most clearly reveal about Chef Marisol’s approach to innovation?",
+              options: [
+                "A. She strictly adheres to traditional recipes",
+                "B. She embraces creative risk-taking, even if it leads to chaos",
+                "C. She avoids any form of experimentation in her dishes",
+                "D. She prioritizes presentation over taste"
+              ],
+              answer: "B"
+            },
+            {
+              question: "How does the imagery and tone transform apparent failures in the kitchen?",
+              options: [
+                "A. By portraying them as disastrous setbacks",
+                "B. By turning them into engaging, humorous moments that add charm",
+                "C. By ignoring the mishaps entirely",
+                "D. By emphasizing the need for stricter kitchen protocols"
+              ],
+              answer: "B"
+            },
+            {
+              question: "What is the significance of the balance between chaos and order in the passage?",
+              options: [
+                "A. It suggests that order is the only way to achieve success",
+                "B. It contributes to the message that creativity can flourish under pressure",
+                "C. It implies that chaos should be avoided in culinary arts",
+                "D. It highlights the superiority of traditional cooking methods"
+              ],
+              answer: "B"
+            }
+          ]
+        },
+        {
+          id: 7,
+          title: "Startup Shenanigans",
+          text: "In a bustling co-working space, a quirky tech startup prepared for the launch of their latest innovation—a gadget touted to revolutionize daily life. The product, a seemingly ordinary smart device with extraordinary features, was meant to streamline mundane tasks. However, as the demonstration unfolded, the device began behaving in hilariously unexpected ways. Instead of quietly managing schedules, it started reciting spontaneous poetry and even ordering random supplies mid-presentation. The founders, known for their eccentric vision, could only watch in amused disbelief as the gadget turned the high-stakes launch into a comedy of errors. The audience, initially puzzled, soon joined in the laughter, finding charm in the unanticipated quirks of technology. In that moment, the startup’s mishaps underscored a powerful message: innovation often thrives in the midst of imperfection, and sometimes, a little chaos can spark the most creative breakthroughs.",
+          questions: [
+            {
+              question: "What underlying commentary on modern innovation is suggested by the gadget’s unexpected behavior?",
+              options: [
+                "A. That technology should never be relied upon",
+                "B. That innovation often includes unforeseen imperfections and quirks",
+                "C. That gadgets must always function flawlessly",
+                "D. That simplicity is always superior to complexity"
+              ],
+              answer: "B"
+            },
+            {
+              question: "How does the use of humor reflect the nature of startup culture in the passage?",
+              options: [
+                "A. It portrays startup culture as overly competitive and rigid",
+                "B. It underscores the value of adaptability and lightheartedness in the face of imperfections",
+                "C. It diminishes the importance of innovative ideas",
+                "D. It suggests that humor is irrelevant in professional settings"
+              ],
+              answer: "B"
+            },
+            {
+              question: "What does the audience’s reaction to the gadget's mishaps indicate about their attitude toward innovation?",
+              options: [
+                "A. They are indifferent to technological errors",
+                "B. They appreciate the unpredictability and find humor in the situation",
+                "C. They are strictly critical of any malfunction",
+                "D. They expect a controlled and predictable demonstration"
+              ],
+              answer: "B"
+            }
+          ]
+        },
+        {
+          id: 8,
+          title: "The Great Library Caper",
+          text: "What began as a quiet afternoon at the town library quickly spiraled into an unexpected caper filled with humor and mischief. Under the soft glow of antique lamps, the usually silent halls erupted in whispers and chuckles as a band of clever regulars decided to add a little adventure to their routine. It started when a well-read patron “borrowed” an entire shelf of old detective novels, leaving behind a series of playful clues that mimicked a mystery plot. The determined librarian, Ms. Harper, renowned for her strict adherence to order, found herself both exasperated and secretly entertained as patrons joined in the light-hearted escapade. Book carts became chariots of whimsy, and hushed giggles filled the corners of the reading room. In this delightful disruption, the library transformed into a stage for creativity, proving that even the most venerable institutions can harbor unexpected moments of joy and playful rebellion.",
+          questions: [
+            {
+              question: "How does the playful subversion of library norms function in the narrative?",
+              options: [
+                "A. It shows that libraries should never allow any disruptions",
+                "B. It critiques traditional institutions while celebrating creativity within structured environments",
+                "C. It undermines the importance of libraries entirely",
+                "D. It strictly reinforces existing library rules"
+              ],
+              answer: "B"
+            },
+            {
+              question: "Which element best contributes to the passage’s balance of humor and respect for the library setting?",
+              options: [
+                "A. The aggressive behavior of the patrons",
+                "B. The playful language and subtle mischief that still honors the library’s value",
+                "C. The complete disregard for library protocols",
+                "D. The strict enforcement of rules by all staff"
+              ],
+              answer: "B"
+            },
+            {
+              question: "What does Ms. Harper’s reaction to the unfolding caper reveal about authority in the narrative?",
+              options: [
+                "A. That authority is rigid and uncompromising",
+                "B. That even authority figures can appreciate creative disruption",
+                "C. That authority must always suppress any form of mischief",
+                "D. That Ms. Harper is indifferent to the events"
+              ],
+              answer: "B"
+            }
+          ]
+        },
+        // Long Articles
+        {
+          id: 9,
+          title: "The Misadventures of a Time-Traveling Food Critic",
+          text: "When renowned food critic Leonard Barlow set out to review a new fusion restaurant, he never expected his review to lead him through time. In a twist of fate involving a malfunctioning experimental oven, Leonard found himself transported to a medieval banquet. At first, the clanging of armored knights and the flicker of candlelight overwhelmed him, but soon the aroma of unfamiliar spices sparked his curiosity. Leonard was seated among lords and ladies as platters arrived bearing dishes that bizarrely combined ingredients from different eras. A stew spiced with herbs from his own time was served alongside exotic fruits unknown to medieval palates. The sight of a jester juggling loaves of bread and a troubadour reciting limericks about roasted meats had Leonard scribbling notes furiously, his pen racing to capture every surreal detail. As the banquet wound down, Leonard’s journey whisked him forward to a futuristic realm where AI chefs orchestrated molecular gastronomy shows. Dishes burst into digital fireworks upon serving, and even the presentation was an art form of technological wizardry. Amid the chaos, Leonard recognized a common thread: each era celebrated innovation in its own absurd way, leaving him with a renewed appreciation for the creative spirit behind culinary experimentation.",
+          questions: [
+            {
+              question: "How does Leonard’s accidental journey through time function as a narrative device in the story?",
+              options: [
+                "A. It detracts from the focus on food innovation",
+                "B. It simplifies the process of food criticism",
+                "C. It creates absurd juxtapositions that highlight cultural and culinary evolution",
+                "D. It provides historical context for traditional recipes"
+              ],
+              answer: "C"
+            },
+            {
+              question: "What does the combination of medieval and futuristic culinary experiences suggest about the nature of innovation?",
+              options: [
+                "A. Culinary creativity is limited by the era’s technology",
+                "B. The critic is unable to appreciate any culinary style",
+                "C. Innovation is chaotic but ultimately unifying across eras",
+                "D. Traditional methods always outperform modern techniques"
+              ],
+              answer: "C"
+            },
+            {
+              question: "How does Leonard’s curious and humorous reaction enhance the overall tone of the passage?",
+              options: [
+                "A. It criticizes the past and future equally",
+                "B. It portrays him as detached and unengaged",
+                "C. It adds a layer of playful wonder that underscores the story’s absurdity",
+                "D. It emphasizes a professional, emotionless review style"
+              ],
+              answer: "C"
+            }
+          ]
+        },
+        {
+          id: 10,
+          title: "An Unlikely Hero in a Supermarket Heist",
+          text: "On an ordinary Saturday, shy and unassuming Clara entered her neighborhood supermarket, unaware that her routine grocery trip would transform into a wild caper. Under the stark fluorescent lights and perfectly arranged shelves, the scene seemed mundane—until a sudden commotion near the produce section signaled impending chaos. As Clara navigated the aisles, a group of eccentric thieves launched an audacious heist. Runaway shopping carts streaked by, while price scanners and the PA system malfunctioned, spouting random announcements and nonsensical discounts. The disarray was heightened by a burst of absurdity when an intercom blared a medley of old jingles. Amid this pandemonium, Clara found herself in the unexpected role of mediator when a flustered cashier pleaded for help. Embracing the moment, Clara rallied fellow shoppers, turning scattered carts and overflowing produce stands into an impromptu barricade against the thieves. Laughter and collective spirit replaced panic, and what began as a criminal plot ended in an odd celebration of community ingenuity. Clara’s transformation from quiet bystander to unlikely hero underscored the idea that everyday people can rise to extraordinary challenges when unity prevails.",
+          questions: [
+            {
+              question: "How does the supermarket setting contribute to the humor in the narrative?",
+              options: [
+                "A. It makes the story seem overly contrived",
+                "B. It highlights the rigid order of daily routines",
+                "C. It contrasts an ordinary setting with the absurdity of a heist, enhancing the comedic effect",
+                "D. It reinforces the seriousness of modern retail environments"
+              ],
+              answer: "C"
+            },
+            {
+              question: "What does Clara’s transformation from a timid shopper to an active leader imply about ordinary individuals?",
+              options: [
+                "A. They are unprepared for any form of crisis",
+                "B. Heroism is exclusive to trained professionals",
+                "C. Unforeseen circumstances can reveal hidden strengths and foster community unity",
+                "D. Routine errands should never be disrupted"
+              ],
+              answer: "C"
+            },
+            {
+              question: "In what way do the technological malfunctions (price scanners, PA system) impact the tone of the passage?",
+              options: [
+                "A. They add a layer of whimsical absurdity that lightens the narrative",
+                "B. They create a distraction from the main plot",
+                "C. They introduce tension and uncertainty",
+                "D. They undermine the credibility of the setting"
+              ],
+              answer: "A"
+            }
+          ]
+        },
+        {
+          id: 11,
+          title: "The Eccentric Inventor’s Ultimate Contraption",
+          text: "Dr. Eloise Granger, known for her wild and imaginative inventions, unveiled her latest gadget—a machine designed to simplify everyday chores. During a grand demonstration in her cluttered workshop, she promised the contraption would fold laundry, brew the perfect cup of tea, and even pamper the family pet. Expectations ran high until the machine began to malfunction in spectacular ways. In the midst of the live demo, the machine sputtered and misbehaved. Instead of neatly folding clothes, it sent socks flying into the air like colorful confetti. When it attempted to brew tea, the resulting concoction featured bizarre flavors that startled the onlookers. The highlight came when a mechanical arm, intended to gently stroke the dog, instead initiated a ticklish massage that left everyone laughing. What could have been a disastrous failure soon became an unexpected source of amusement and community bonding. Rather than becoming disheartened, Dr. Granger embraced the chaos with a wry smile. The neighbors, charmed by the spectacle, began to see beauty in the machine’s imperfection. Her invention, though far from flawless, sparked lively discussions about the unpredictable nature of creative experimentation and the joy found in embracing failure as a stepping stone to innovation.",
+          questions: [
+            {
+              question: "What does the malfunctioning contraption primarily symbolize in the narrative?",
+              options: [
+                "A. A strict adherence to traditional methods",
+                "B. The necessity of flawless engineering",
+                "C. The unpredictable and humorous side of creative experimentation",
+                "D. The failure of modern technology to meet expectations"
+              ],
+              answer: "C"
+            },
+            {
+              question: "How does Dr. Granger’s reaction to the contraption’s errors influence the story’s overall message?",
+              options: [
+                "A. It reflects a resilient spirit that sees humor and opportunity in failure",
+                "B. It shows her deep frustration with innovation",
+                "C. It indicates that her invention should be abandoned",
+                "D. It suggests that mistakes should be avoided at all costs"
+              ],
+              answer: "A"
+            },
+            {
+              question: "In what way do the onlookers’ reactions reinforce the narrative’s themes?",
+              options: [
+                "A. Their reactions indicate a rejection of new ideas",
+                "B. They distract from the purpose of the demonstration",
+                "C. Their laughter and acceptance underscore a communal celebration of imperfection",
+                "D. They create a hostile atmosphere that isolates the inventor"
+              ],
+              answer: "C"
+            }
+          ]
+        },
         {
           id: 12,
           title: "A Day in the Life of a Quirky Festival Organizer",
-          text: "Marina Ortiz, known for her boundless energy and innovative ideas, was orchestrating the annual Spring Fling Festival with high hopes and meticulous planning...",
+          text: "Marina Ortiz, known for her boundless energy and innovative ideas, was orchestrating the annual Spring Fling Festival with high hopes and meticulous planning. The morning buzzed with the promise of vibrant parades, lively performances, and strong community connections. Marina coordinated with local artists, food vendors, and community groups to ensure that every detail would spark joy. As the festival unfolded, however, unexpected mishaps began to surface. A themed float designed to resemble a giant rainbow encountered mechanical troubles, tumbling in a display of comic chaos. Simultaneously, a small street performance by local musicians transformed into an energetic flash mob that drew cheers from an astonished crowd. Amid these unpredictable events, Marina’s quick thinking and infectious humor transformed each setback into a chance for spontaneous celebration. By evening, the festival had morphed into a tapestry of unplanned yet delightful moments. Marina’s ability to adapt turned potential disasters into the event’s most memorable highlights, reinforcing the idea that imperfection can fuel creativity and forge stronger community bonds. The mishaps, rather than undermining the celebration, enriched it with authenticity and warmth, leaving attendees with stories to cherish.",
           questions: [
             {
               question: "How does Marina’s proactive approach affect the festival’s outcome?",
-              options: ["A. It eliminates all problems before they occur", "B. It has little impact on the overall success of the event", "C. It transforms potential setbacks into opportunities for community engagement", "D. It leads to further confusion and disorganization"],
+              options: [
+                "A. It eliminates all problems before they occur",
+                "B. It has little impact on the overall success of the event",
+                "C. It transforms potential setbacks into opportunities for community engagement",
+                "D. It leads to further confusion and disorganization"
+              ],
               answer: "C"
             },
-            // ... (other questions)
+            {
+              question: "What role do the unexpected mishaps (e.g., the float accident, spontaneous flash mob) play in shaping the narrative’s tone?",
+              options: [
+                "A. They diminish the organizer’s authority and planning skills",
+                "B. They add a humorous and spontaneous layer that enhances the festival’s charm",
+                "C. They introduce an element of frustration that overshadows the event",
+                "D. They are used to critique the community’s lack of discipline"
+              ],
+              answer: "B"
+            },
+            {
+              question: "What underlying message about embracing imperfection is conveyed through the passage?",
+              options: [
+                "A. Imperfection is irrelevant in the planning of community events",
+                "B. Embracing imperfections can lead to a more genuine and joyful celebration",
+                "C. Only flawless execution can bring communities together",
+                "D. Imperfection weakens communal events and should be avoided"
+              ],
+              answer: "B"
+            }
           ]
         }
       ];
@@ -384,19 +752,7 @@
             const radio = document.createElement('input');
             radio.type = 'radio';
             radio.name = `question-${qIndex}`;
-            radio.value = option.charAt(0); // Get the letter (A, B, etc.)
-            
-            radio.addEventListener('change', (e) => {
-              const selected = e.target.value;
-              const feedbackDiv = questionDiv.querySelector('.feedback');
-              if (selected === question.answer) {
-                feedbackDiv.textContent = 'Correct!';
-                feedbackDiv.className = 'feedback correct';
-              } else {
-                feedbackDiv.textContent = `Incorrect. The correct answer is ${question.answer}.`;
-                feedbackDiv.className = 'feedback incorrect';
-              }
-            });
+            radio.value = option;
             
             label.appendChild(radio);
             label.appendChild(document.createTextNode(option));
@@ -404,10 +760,6 @@
             optionsList.appendChild(li);
           });
           questionDiv.appendChild(optionsList);
-          
-          const feedbackDiv = document.createElement('div');
-          feedbackDiv.className = 'feedback';
-          questionDiv.appendChild(feedbackDiv);
           
           questionsContainer.appendChild(questionDiv);
         });
