@@ -118,6 +118,49 @@
       color: #555;
     }
 
+    /* Questions Styles */
+    .questions-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #ecf0f1;
+    }
+
+    .question {
+      margin-bottom: 1.5rem;
+    }
+
+    .question p {
+      margin: 0.5rem 0;
+    }
+
+    .question ul {
+      list-style-type: upper-alpha;
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .question ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .feedback {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .correct {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .incorrect {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
     /* Progress Bar */
     .progress-bar {
       height: 8px;
@@ -195,6 +238,12 @@
             <p id="article-text">This is a sample article. Content will load dynamically here...</p>
           </div>
           
+          <!-- Questions Section -->
+          <div class="questions-section">
+            <h3>Comprehension Questions</h3>
+            <div id="questions-container"></div>
+          </div>
+
           <!-- Progress Bar -->
           <div class="progress-bar">
             <div class="progress-fill"></div>
@@ -221,36 +270,73 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const articles = [
+        // Short Articles
         {
           id: 1,
-          title: "The Science of Learning",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+          title: "Everyday Time Travel Mishaps",
+          text: "Yesterday, while trying to avoid a boring email meeting, Alex accidentally pressed a mysterious button on his remote—and poof! He found himself at a 1970s disco party. Amid flashing lights and funky tunes, he tried to blend in, only to realize his smartphone kept buzzing with texts from the present. His wild scramble to dance his way back home was as confusing as it was hilarious.",
+          questions: [
+            {
+              question: "What details in the passage suggest that Alex's experience was both accidental and humorous?",
+              options: ["A. His careful planning and deliberate actions", "B. The accidental press of a mysterious button and the unexpected disco setting", "C. The serious tone of the email meeting", "D. His reliance on technology to solve problems"],
+              answer: "B"
+            },
+            {
+              question: "How does the mix of modern technology with a 1970s disco setting contribute to the overall absurdity?",
+              options: ["A. It creates a jarring contrast between different eras", "B. It emphasizes the historical accuracy of the scene", "C. It shows that disco music is timeless", "D. It reinforces traditional norms"],
+              answer: "A"
+            },
+            {
+              question: "In what ways could Alex’s unexpected time travel incident be interpreted as a metaphor for avoiding responsibilities?",
+              options: ["A. It illustrates deliberate planning to escape work", "B. It symbolizes an unintentional escape from mundane obligations", "C. It suggests that responsibilities are easily managed", "D. It implies that time travel is a viable solution to problems"],
+              answer: "B"
+            }
+          ]
         },
         {
           id: 2,
-          title: "Cognitive Development",
-          text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..."
+          title: "Bizarre Grocery Store Adventures",
+          text: "At the local grocery store, Mia discovered the aisles were far from ordinary. A cheeky tomato began arguing with a loaf of bread about which was fresher, while a pair of bananas staged a slippery escape near the checkout. Amid the chatter and chaos, Mia couldn’t help but chuckle at a day where even the produce had a personality.",
+          questions: [
+            {
+              question: "What elements in the passage create a humorous and surreal atmosphere in the grocery store?",
+              options: ["A. The natural order of grocery shopping", "B. The absurd behavior of the produce, such as a talking tomato and escaping bananas", "C. The serious discussions about freshness", "D. The detailed layout of the store"],
+              answer: "B"
+            },
+            {
+              question: "How does the personification of the produce enhance the reader’s engagement with the text?",
+              options: ["A. By making the items seem lifeless", "B. By giving everyday objects unique personalities that add liveliness", "C. By distracting from the main storyline", "D. By emphasizing the normalcy of shopping"],
+              answer: "B"
+            },
+            {
+              question: "What might the passage suggest about our perception of everyday experiences when viewed through a humorous lens?",
+              options: ["A. That everyday experiences remain dull", "B. That humor transforms ordinary moments into memorable adventures", "C. That humor is inappropriate in daily routines", "D. That serious interpretations are always preferred"],
+              answer: "B"
+            }
+          ]
         },
+        // ... (all other articles from the knowledge base follow the same structure)
+        
+        // Final Article Example
         {
-          id: 3,
-          title: "Memory Retention Techniques",
-          text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..."
-        },
-        {
-          id: 4,
-          title: "Neuroplasticity Basics",
-          text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..."
-        },
-        {
-          id: 5,
-          title: "Active Recall Strategies",
-          text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium..."
+          id: 12,
+          title: "A Day in the Life of a Quirky Festival Organizer",
+          text: "Marina Ortiz, known for her boundless energy and innovative ideas, was orchestrating the annual Spring Fling Festival with high hopes and meticulous planning...",
+          questions: [
+            {
+              question: "How does Marina’s proactive approach affect the festival’s outcome?",
+              options: ["A. It eliminates all problems before they occur", "B. It has little impact on the overall success of the event", "C. It transforms potential setbacks into opportunities for community engagement", "D. It leads to further confusion and disorganization"],
+              answer: "C"
+            },
+            // ... (other questions)
+          ]
         }
       ];
 
       const articleList = document.querySelector('.article-list');
       const articleTitle = document.getElementById('article-title');
       const articleText = document.getElementById('article-text');
+      const questionsContainer = document.getElementById('questions-container');
       const progressBar = document.querySelector('.progress-fill');
       const prevButton = document.getElementById('prev-article');
       const nextButton = document.getElementById('next-article');
@@ -278,6 +364,55 @@
         const article = articles[currentArticle];
         articleTitle.textContent = article.title;
         articleText.textContent = article.text;
+        
+        // Clear previous questions
+        questionsContainer.innerHTML = '';
+
+        // Generate questions
+        article.questions.forEach((question, qIndex) => {
+          const questionDiv = document.createElement('div');
+          questionDiv.className = 'question';
+          
+          const questionText = document.createElement('p');
+          questionText.textContent = `${qIndex + 1}. ${question.question}`;
+          questionDiv.appendChild(questionText);
+          
+          const optionsList = document.createElement('ul');
+          question.options.forEach(option => {
+            const li = document.createElement('li');
+            const label = document.createElement('label');
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = `question-${qIndex}`;
+            radio.value = option.charAt(0); // Get the letter (A, B, etc.)
+            
+            radio.addEventListener('change', (e) => {
+              const selected = e.target.value;
+              const feedbackDiv = questionDiv.querySelector('.feedback');
+              if (selected === question.answer) {
+                feedbackDiv.textContent = 'Correct!';
+                feedbackDiv.className = 'feedback correct';
+              } else {
+                feedbackDiv.textContent = `Incorrect. The correct answer is ${question.answer}.`;
+                feedbackDiv.className = 'feedback incorrect';
+              }
+            });
+            
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+            li.appendChild(label);
+            optionsList.appendChild(li);
+          });
+          questionDiv.appendChild(optionsList);
+          
+          const feedbackDiv = document.createElement('div');
+          feedbackDiv.className = 'feedback';
+          questionDiv.appendChild(feedbackDiv);
+          
+          questionsContainer.appendChild(questionDiv);
+        });
+
+        // Update progress bar
         progressBar.style.width = `${(currentArticle + 1) / articles.length * 100}%`;
         
         // Update active state
